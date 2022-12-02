@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 let file = Bundle.main.path(forResource: "input", ofType: "txt")
 let input = try String(contentsOfFile: file!)
