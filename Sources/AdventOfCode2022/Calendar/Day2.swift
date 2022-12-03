@@ -52,7 +52,7 @@ struct Day2: Day {
         }
     }()
 
-    func question1() throws -> Any {
+    func question1() -> Any {
         rounds.reduce(into: 0) { points, result in
             let (opponent, move) = result
 
@@ -79,7 +79,7 @@ struct Day2: Day {
         }
     }
     
-    func question2() throws -> Any {
+    func question2() -> Any {
         rounds.reduce(into: 0) { points, result in
             let (opponent, desiredOutcome) = result
             if desiredOutcome == "X" { // lose

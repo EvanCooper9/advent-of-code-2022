@@ -16,11 +16,11 @@ struct Day1: Day {
         return elves.sorted()
     }()
     
-    func question1() throws -> Any {
+    func question1() -> Any {
         elves.last
     }
     
-    func question2() throws -> Any {
+    func question2() -> Any {
         elves.suffix(3).reduce(0, +)
     }
 }
