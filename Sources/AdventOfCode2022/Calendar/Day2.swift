@@ -44,8 +44,7 @@ struct Day2: Day {
     }
     
     private let rounds: [(Shape, String)] = {
-        guard let rounds = try? lines(for: "day2") else { return [] }
-        return rounds.compactMap { round in
+        lines(for: "day2").compactMap { round in
             let parts = round.components(separatedBy: " ")
             guard let opponent = Shape(parts[0]) else { return nil }
             return (opponent, parts[1])

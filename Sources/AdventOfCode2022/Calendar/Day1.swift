@@ -1,10 +1,9 @@
 struct Day1: Day {
     
     private let elves: [Int] = {
-        guard let lines = try? lines(for: "day1") else { return [] }
         var current = 0
         var elves = [Int]()
-        lines.forEach { line in
+        lines(for: "day1").forEach { line in
             guard !line.isEmpty else {
                 elves.append(current)
                 current = 0
@@ -17,7 +16,7 @@ struct Day1: Day {
     }()
     
     func question1() -> Any {
-        elves.last
+        elves.last!
     }
     
     func question2() -> Any {

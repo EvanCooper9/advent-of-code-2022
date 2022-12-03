@@ -2,49 +2,28 @@ import Foundation
 
 struct Day3: Day {
     
-    private struct Rudsack {
-        let left: String
-        let right: String
-        var all: String { left + right }
-    }
-    
-    private let rudsacks: [Rudsack] = {
-        guard let lines = try? lines(for: "day3") else { return [] }
-        return lines.compactMap { line in
-            guard !line.isEmpty else { return nil }
-            let middleIndex = line.index(line.startIndex, offsetBy: line.count / 2)
-            return Rudsack(
-                left: String(line.prefix(upTo: middleIndex)),
-                right: String(line.suffix(from: middleIndex))
-            )
-        }
-    }()
+    private let rudsacks: [String] = { lines(for: "day3") }()
     
     func question1() -> Any {
-        var duplicates = [Character]()
-        
-        rudsacks.forEach { rudsack in
-            let rightSet = Set(rudsack.right.map { $0 })
+        rudsacks.reduce(into: 0) { partialResult, rudsack in
+            let rightSet = Set(rudsack.prefix(rudsack.count / 2).map { $0 })
             var alreadyAdded = Set<Character>()
-            for character in rudsack.left {
+            for character in rudsack.suffix(rudsack.count / 2) {
                 if rightSet.contains(character) && !alreadyAdded.contains(character) {
-                    duplicates.append(character)
+                    partialResult += character.priority ?? 0
                     alreadyAdded.insert(character)
+                    continue
                 }
             }
         }
-        
-        return duplicates
-            .compactMap(\.priority)
-            .reduce(0, +)
     }
     
     func question2() -> Any {
         var sum = 0
-        for i in stride(from: 0, to: rudsacks.count, by: 3) {
-            let first = rudsacks[i].all.bitmask
-            let second = rudsacks[i + 1].all.bitmask
-            let third = rudsacks[i + 2].all.bitmask
+        for i in stride(from: 0, to: rudsacks.count - 3, by: 3) {
+            let first = rudsacks[i].bitmask
+            let second = rudsacks[i + 1].bitmask
+            let third = rudsacks[i + 2].bitmask
             
             let result = log2(CGFloat(first & second & third))
             sum += Int(result)
