@@ -1,3 +1,3 @@
-let day = Day3()
-print(day.question1())
-print(day.question2())
+let day = Day4()
+print("Question 1:", day.question1())
+print("Question 2:", day.question2())
