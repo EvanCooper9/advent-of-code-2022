@@ -25,7 +25,6 @@ struct Day5: Day {
         }
     }()
     
-    
     func question1() -> Any {
         var stacks = stacks
         moves.forEach { count, from, to in
