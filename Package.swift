@@ -5,9 +5,15 @@ import PackageDescription
 
 let package = Package(
     name: "AdventOfCode2022",
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-algorithms.git", .upToNextMajor(from: "1.0.0"))
+    ],
     targets: [
         .executableTarget(
             name: "AdventOfCode2022",
+            dependencies: [
+                .product(name: "Algorithms", package: "swift-algorithms")
+            ],
             resources: [
                 .process("Inputs")
             ]

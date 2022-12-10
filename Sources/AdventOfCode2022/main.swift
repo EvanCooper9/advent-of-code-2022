@@ -1,3 +1,3 @@
-let day = Day9()
+let day = Day10()
 print("Question 1:", day.question1())
 print("Question 2:", day.question2())
